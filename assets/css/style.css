@@ -1,0 +1,95 @@
+body {
+  margin: 20px;
+  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+  font-size: 12px;
+  color: #3C3C3D; }
+  body a {
+    color: black; }
+
+header h3 {
+  font-size: 40px; }
+
+nav {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: auto; }
+  nav li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px; }
+  nav ul {
+    display: inline;
+    padding-right: 300px; }
+  nav form {
+    float: right;
+    display: inline; }
+
+section#left-side {
+  width: 600px;
+  float: left; }
+
+section#right-side {
+  margin-left: 20px;
+  width: auto;
+  float: left; }
+  section#right-side div#widgets {
+    margin-top: 15px; }
+  section#right-side .widget {
+    margin-right: 10px; }
+  section#right-side .widget.xkcd {
+    float: left;
+    height: 320px;
+    width: auto; }
+    section#right-side .widget.xkcd img {
+      max-width: 250px;
+      max-height: 270px; }
+  section#right-side .widget.nu {
+    float: left;
+    height: 320px;
+    width: 300px; }
+    section#right-side .widget.nu li {
+      list-style-type: none; }
+      section#right-side .widget.nu li:nth-child(2n+1) {
+        background: #ECECEC; }
+    section#right-side .widget.nu div#nu-list {
+      margin-top: 5px;
+      overflow-y: auto;
+      height: 285px; }
+  section#right-side .widget.appstorm {
+    height: 320px; }
+    section#right-side .widget.appstorm li {
+      list-style-type: none; }
+      section#right-side .widget.appstorm li:nth-child(2n+1) {
+        background: #ECECEC; }
+  section#right-side #widgets a.button.reload {
+    padding: 1px 1px 1px 3px;
+    width: 12px; }
+
+div#tabs {
+  margin: 0 0 20px 0; }
+
+table#gridTable span {
+  height: 10px;
+  padding-bottom: 2px; }
+table#gridTable a.button {
+  min-width: 70px;
+  height: 25px;
+  text-align: center; }
+table#gridTable td {
+  padding: 2px; }
+table#gridTable div.options {
+  text-align: center;
+  height: 20px; }
+  table#gridTable div.options a {
+    min-width: 10px;
+    height: 10px;
+    padding: 1px 0px 6px 2px; }
+
+div#form label {
+  display: block; }
+div#form label.normal {
+  display: inline; }
+div#form input[type=number] {
+  width: 20px; }
+div#form input[value^=Save] {
+  display: block; }
