@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	</div>
 
 	<p>
-		<a href="index.php?id=<?php echo (isset($_POST['tabId'])) ? $_POST['tabId'] : $_GET['tab']; ?>">Go back</a>
+		<a href="index.php">Go back</a>
 	</p>
 
 </body>

@@ -21,6 +21,8 @@ class AppStorm
 
 $widget = new AppStorm();
 
+$jsonArray = array();
+
 foreach ($widget->getFeeds() as $feed)
 {
 	$datetime = DateTime::createFromFormat('D, d M Y H:i:s O', $feed->pubDate);

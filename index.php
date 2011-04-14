@@ -27,15 +27,15 @@ require_once 'connect.req.php';
 			});
 			xkcd();
 			appstorm();
-			nu();
+			nos();
 			$("#xkcd-reload").click(xkcd);
 			$("#appstorm-reload").click(appstorm);
-			$("#nu-reload").click(function(){
-				nu($("#nu-categories").val());
+			$("#nos-reload").click(function(){
+				nos();
 			});
-			$("#nu-categories").change(function(){
-				nu($(this).val());
-			})
+			$("#nos-categories").change(function(){
+				nos();
+			});
 		});
 
 		function loadGrid(id) {
@@ -70,44 +70,53 @@ require_once 'connect.req.php';
 			$.getJSON(
 				"widgets/ajax/appstorm.php",
 				function(json) {
-					var result = '<ul>';
-					$.each(json, function(index) {
-						result += '<li>';
-						$.each(this, function(key, value) {
-							<?php
-								printf('result += \'<a href="\' + json[index][key].url + \'" %s>\' + json[index][key].title + \'</a>\';',
-									($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
-							?>
+					var length = 0;
+					for (var props in json)
+						length++;
+					if (length > 0)
+					{
+						var result = '<ul>';
+						$.each(json, function(index) {
+							result += '<li>';
+							$.each(this, function(key, value) {
+								<?php
+									printf('result += \'<a href="\' + json[index][key].url + \'" %s>\' + json[index][key].title + \'</a>\';',
+										($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
+								?>
+							});
+							result += '</li>';
 						});
-						result += '</li>';
-					});
-					result += '</ul>';
-					$("#appstorm-list").html(result);
+						result += '</ul>';
+						$("#appstorm-list").html(result);
+					}
+					else
+						$("#appstorm-list").html('<p>No feeds</p>');
 				}
 			);
 		}
 
-		function nu(category) {
-			$("#nu-list").html(ajax_load);
+		function nos() {
+			$("#nos-list").html(ajax_load);
 			$.getJSON(
-				"widgets/ajax/nu.php",
-				{category: category},
+				"widgets/ajax/nos.php",
 				function(json) {
-					var result = '<ul>';
-					$.each(json, function(index) {
-						result += '<li>';
-						$.each(this, function(key, value) {
+					var length = 0;
+					for (var props in json)
+						length++;
+					if (length > 0)
+					{
+						var result = '<ul>';
+						$.each(json, function(index) {
 							<?php
-								printf('result += \'<a href="\' + json[index][key].url + \'" title="\' + json[index][key].alt + \'" %s>\' + json[index][key].title + \'</a>\';',
+								printf('result += \'<li><span class="time">\' + json[index].time + \'</span><a href="\' + json[index].link + \'" title="\' + json[index].alt + \'" %s>\' + json[index].title + \'</a></li>\';',
 									($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
 							?>
-							if (json[index][key].new == 'Yes')
-								result += '- New!';
 						});
-						result += '</li>';
-					});
-					result += '</ul>';
-					$("#nu-list").html(result);
+						result += '</ul>';
+						$("#nos-list").html(result);
+					}
+					else
+						$("#nos-list").html('<p>No news</p>');
 				}
 			);
 		}
@@ -175,19 +184,11 @@ require_once 'connect.req.php';
 				
 				<p id="xkcdstrip"></p>				
 			</div>
-			<div class="widget nu">
-				<strong class="title">Nu.nl</strong> <a href="#" id="nu-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
-				<p class="description">News of the day in:
-					<select id="nu-categories">
-						<?php
-						$categories = array('Algemeen', 'Economie', 'Internet', 'Opmerkelijk', 'Column', 'Lifehacking', 'Plugged', 'Wetenschap', 'Gezondheid');
-						foreach($categories as $category)
-							echo '<option value="' . $category . '">' . $category . '</option>';
-						?>
-					</select>
-				</p>
+			<div class="widget nos">
+				<strong class="title">NOS</strong> <a href="#" id="nos-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
+				<p class="description">News of the day:</p>
 
-				<div id="nu-list"></div>
+				<div id="nos-list"></div>
 			</div>
 			<div class="widget appstorm">
 				<strong class="title">AppStorm</strong> <a href="#" id="appstorm-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>

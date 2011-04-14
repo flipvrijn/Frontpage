@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<div id="form">
 		<form action="add.php" method="post">
 			<label for="name">Name:</label>
-			<input type="text" name="name" value="<?php echo $_GET['name']; ?>" autofocus required placeholder="Name" />
+			<input type="text" name="name" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : ''; ?>" autofocus required placeholder="Name" />
 
 			<label for="url">URL:</label>
-			<input type="url" name="url" value="<?php echo $_GET['url']; ?>" required placeholder="URL" /><br />
+			<input type="url" name="url" value="<?php echo (isset($_GET['url'])) ? $_GET['url'] : ''; ?>" required placeholder="URL" /><br />
 
 			<label>Tab:</label>
 			<select name="tabId">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	</div>
 
 	<p>
-		<a href="index.php?id=<?php echo (isset($_POST['tabId'])) ? $_POST['tabId'] : $_GET['tab']; ?>">Go back</a>
+		<a href="index.php">Go back</a>
 	</p>
 
 </body>
