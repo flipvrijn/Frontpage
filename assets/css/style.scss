@@ -1,0 +1,189 @@
+body
+{
+	margin: 20px;
+	background: url('../images/background-pattern3.png');
+	font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+	font-size: 12px; 
+	color: #3C3C3D;
+	a {	color: black; }
+}
+
+header
+{
+	h3
+	{
+		font-size: 40px;
+	}
+}
+
+nav
+{
+	margin:
+	{
+		top: 20px;
+		bottom: 20px;
+	}
+	width: auto;
+	li
+	{
+		display: inline;
+		list-style-type: none;
+		padding-right: 20px;
+	}
+	ul
+	{
+		display: inline;
+		padding-right: 300px;
+	}
+	form
+	{
+		float: right;
+		display: inline;
+	}
+}
+
+section
+{
+	border: 1px solid #cfcfcf;
+	border-radius: 15px;
+	background-color: #fff;
+	padding: 10px;
+}
+
+section#left-side
+{
+	width: 600px;
+	float: left;
+}
+
+section#right-side
+{
+	margin-left: 20px;
+	width: auto;
+	float: left;
+	div#widgets
+	{
+		margin-top: 15px;
+	}
+
+	.widget
+	{
+		margin-right: 10px;
+	}
+	.widget.xkcd
+	{
+		float: left;
+		height: 320px;
+		width: auto;
+		img
+		{
+			max:
+			{
+				width: 250px;
+				height: 270px;
+			}
+		}
+	}
+	.widget.nos
+	{
+		float: left;
+		height: 320px;
+		li
+		{
+			list-style-type: none;
+			&:nth-child(2n+1)
+			{
+				background: #ECECEC;
+			}
+			.time
+			{
+				padding-right: 5px;
+			}
+		}
+		div#nos-list
+		{
+			margin-top: 5px;
+			overflow-y: auto;
+			white-space: nowrap;
+			width: 280px;
+			height: 285px;
+		}
+	}
+	.widget.appstorm
+	{
+		clear: both;
+		height: auto;
+		li
+		{
+			list-style-type: none;
+			&:nth-child(2n+1)
+			{
+				background: #ECECEC;
+			}
+		}
+	}
+	#widgets
+	{
+		a.button.reload
+		{
+			padding: 1px 1px 1px 3px;
+			width: 12px;
+		}
+	}
+}
+
+div#tabs
+{
+	margin: 0 0 20px 0 ;
+}
+
+table#gridTable
+{
+	span
+	{
+		height: 10px;
+		padding-bottom: 2px;
+	}
+	a.button
+	{
+		min-width: 70px;
+		height: 25px;
+		text-align: center;
+	}
+	td
+	{
+		padding: 2px;
+	}
+	div.options
+	{
+		text-align: center;
+		height: 20px;
+
+		a
+		{
+			min-width: 10px;
+			height: 10px;
+			padding: 1px 0px 6px 2px;
+		}
+	}
+}
+
+div#form
+{
+	label
+	{
+		display: block;
+	}
+	label.normal
+	{
+		display: inline;
+	}
+	input[type=number]
+	{
+		width: 20px;
+	}
+	input[value^=Save]
+	{
+		display: block;
+	}
+}
