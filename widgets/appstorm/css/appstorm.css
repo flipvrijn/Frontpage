@@ -1,0 +1,7 @@
+.widget.appstorm {
+  clear: both;
+  height: auto; }
+  .widget.appstorm li {
+    list-style-type: none; }
+    .widget.appstorm li:nth-child(2n+1) {
+      background: #ECECEC; }

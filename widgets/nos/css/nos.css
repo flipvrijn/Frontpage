@@ -1,0 +1,15 @@
+.widget.nos {
+  float: left;
+  height: 320px; }
+  .widget.nos li {
+    list-style-type: none; }
+    .widget.nos li:nth-child(2n+1) {
+      background: #ECECEC; }
+    .widget.nos li .time {
+      padding-right: 5px; }
+  .widget.nos div#nos-list {
+    margin-top: 5px;
+    overflow-y: auto;
+    white-space: nowrap;
+    width: 280px;
+    height: 285px; }
