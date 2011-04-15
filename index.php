@@ -11,31 +11,29 @@ require_once 'connect.req.php';
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="widgets/nos/css/nos.css" />
+	<link rel="stylesheet" type="text/css" href="widgets/appstorm/css/appstorm.css" />
+	<link rel="stylesheet" type="text/css" href="widgets/xkcd/css/xkcd.css" />
 	<script type="text/javascript" src="assets/js/jquery.js"></script>
+	<script type="text/javascript" src="widgets/nos/js/nos.js"></script>
+	<script type="text/javascript" src="widgets/appstorm/js/appstorm.js"></script>
+	<script type="text/javascript" src="widgets/xkcd/js/xkcd.js"></script>
 	<script type="text/javascript">
 		$.ajaxSetup({
 			cache: false
 		});
 		var ajax_load = '<img src="assets/images/loader.gif" alt="loading..." />';
 
-		$(function() {
+		$(document).ready(function() {
 			loadGrid();
 			$("#tabs a").click(function(){
 				loadGrid($(this).attr("id"));
 				$("#tabs a").removeClass("primary");
 				$(this).addClass("primary");
 			});
+			nos();
 			xkcd();
 			appstorm();
-			nos();
-			$("#xkcd-reload").click(xkcd);
-			$("#appstorm-reload").click(appstorm);
-			$("#nos-reload").click(function(){
-				nos();
-			});
-			$("#nos-categories").change(function(){
-				nos();
-			});
 		});
 
 		function loadGrid(id) {
@@ -46,77 +44,6 @@ require_once 'connect.req.php';
 				{id: id},
 				function(json) {
 					$("#grid").html(json);
-				}
-			);
-		}
-
-		function xkcd() {
-			$("#xkcdstrip").html(ajax_load);
-			$.getJSON(
-				"widgets/ajax/xkcd.php",
-				{},
-				function(json){
-					<?php
-						printf('var result = \'<a href="\' + json.strip.image_url + \'" %s><img src="\' + json.strip.image_url + \'" title="\' + json.strip.title + \'" alt="\' + json.strip.alt + \'" /></a>\';',
-						($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
-					?>
-					$("#xkcdstrip").html(result);
-				}
-			);
-		}
-
-		function appstorm() {
-			$("#appstorm-list").html(ajax_load);
-			$.getJSON(
-				"widgets/ajax/appstorm.php",
-				function(json) {
-					var length = 0;
-					for (var props in json)
-						length++;
-					if (length > 0)
-					{
-						var result = '<ul>';
-						$.each(json, function(index) {
-							result += '<li>';
-							$.each(this, function(key, value) {
-								<?php
-									printf('result += \'<a href="\' + json[index][key].url + \'" %s>\' + json[index][key].title + \'</a>\';',
-										($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
-								?>
-							});
-							result += '</li>';
-						});
-						result += '</ul>';
-						$("#appstorm-list").html(result);
-					}
-					else
-						$("#appstorm-list").html('<p>No feeds</p>');
-				}
-			);
-		}
-
-		function nos() {
-			$("#nos-list").html(ajax_load);
-			$.getJSON(
-				"widgets/ajax/nos.php",
-				function(json) {
-					var length = 0;
-					for (var props in json)
-						length++;
-					if (length > 0)
-					{
-						var result = '<ul>';
-						$.each(json, function(index) {
-							<?php
-								printf('result += \'<li><span class="time">\' + json[index].time + \'</span><a href="\' + json[index].link + \'" title="\' + json[index].alt + \'" %s>\' + json[index].title + \'</a></li>\';',
-									($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '');
-							?>
-						});
-						result += '</ul>';
-						$("#nos-list").html(result);
-					}
-					else
-						$("#nos-list").html('<p>No news</p>');
 				}
 			);
 		}
@@ -165,7 +92,7 @@ require_once 'connect.req.php';
 					}
 				}
 
-				echo '<a href="addTab.php" class="positive right button">Add tab</a>';
+				echo '<a href="addTab.php" class="positive right button">Add tab</a>' . PHP_EOL;
 			?>
 		</div>
 
@@ -174,7 +101,7 @@ require_once 'connect.req.php';
 
 	<section id="right-side">
 		<header>
-			<h3>Other stuff</h3>
+			<h3>Widgets</h3>
 		</header>
 
 		<div id="widgets">

@@ -70,58 +70,6 @@ section#right-side
 	{
 		margin-right: 10px;
 	}
-	.widget.xkcd
-	{
-		float: left;
-		height: 320px;
-		width: auto;
-		img
-		{
-			max:
-			{
-				width: 250px;
-				height: 270px;
-			}
-		}
-	}
-	.widget.nos
-	{
-		float: left;
-		height: 320px;
-		li
-		{
-			list-style-type: none;
-			&:nth-child(2n+1)
-			{
-				background: #ECECEC;
-			}
-			.time
-			{
-				padding-right: 5px;
-			}
-		}
-		div#nos-list
-		{
-			margin-top: 5px;
-			overflow-y: auto;
-			white-space: nowrap;
-			width: 280px;
-			height: 285px;
-		}
-	}
-	.widget.appstorm
-	{
-		clear: both;
-		height: auto;
-		li
-		{
-			list-style-type: none;
-			&:nth-child(2n+1)
-			{
-				background: #ECECEC;
-			}
-		}
-	}
 	#widgets
 	{
 		a.button.reload

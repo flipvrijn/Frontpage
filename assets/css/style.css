@@ -43,35 +43,6 @@ section#right-side {
     margin-top: 15px; }
   section#right-side .widget {
     margin-right: 10px; }
-  section#right-side .widget.xkcd {
-    float: left;
-    height: 320px;
-    width: auto; }
-    section#right-side .widget.xkcd img {
-      max-width: 250px;
-      max-height: 270px; }
-  section#right-side .widget.nos {
-    float: left;
-    height: 320px; }
-    section#right-side .widget.nos li {
-      list-style-type: none; }
-      section#right-side .widget.nos li:nth-child(2n+1) {
-        background: #ECECEC; }
-      section#right-side .widget.nos li .time {
-        padding-right: 5px; }
-    section#right-side .widget.nos div#nos-list {
-      margin-top: 5px;
-      overflow-y: auto;
-      white-space: nowrap;
-      width: 280px;
-      height: 285px; }
-  section#right-side .widget.appstorm {
-    clear: both;
-    height: auto; }
-    section#right-side .widget.appstorm li {
-      list-style-type: none; }
-      section#right-side .widget.appstorm li:nth-child(2n+1) {
-        background: #ECECEC; }
   section#right-side #widgets a.button.reload {
     padding: 1px 1px 1px 3px;
     width: 12px; }
