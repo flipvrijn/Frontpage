@@ -1,8 +1,4 @@
-<?php
-
-require_once 'connect.req.php';
-
-?>
+<?php require_once 'connect.req.php'; ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -11,13 +7,8 @@ require_once 'connect.req.php';
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="widgets/nos/css/nos.css" />
-	<link rel="stylesheet" type="text/css" href="widgets/appstorm/css/appstorm.css" />
-	<link rel="stylesheet" type="text/css" href="widgets/xkcd/css/xkcd.css" />
 	<script type="text/javascript" src="assets/js/jquery.js"></script>
-	<script type="text/javascript" src="widgets/nos/js/nos.js"></script>
-	<script type="text/javascript" src="widgets/appstorm/js/appstorm.js"></script>
-	<script type="text/javascript" src="widgets/xkcd/js/xkcd.js"></script>
+	<script type="text/javascript" src="assets/js/grid.js"></script>
 	<script type="text/javascript">
 		$.ajaxSetup({
 			cache: false
@@ -25,28 +16,22 @@ require_once 'connect.req.php';
 		var ajax_load = '<img src="assets/images/loader.gif" alt="loading..." />';
 
 		$(document).ready(function() {
-			loadGrid();
-			$("#tabs a").click(function(){
-				loadGrid($(this).attr("id"));
-				$("#tabs a").removeClass("primary");
-				$(this).addClass("primary");
+			$.getScript('assets/js/grid.js', function() {
+				grid();
 			});
-			nos();
-			xkcd();
-			appstorm();
+			$.getScript('widgets/pennyarcade/js/pennyarcade.js', function() {
+				pennyarcade();
+			});
+			$.getScript('widgets/xkcd/js/xkcd.js', function() {
+				xkcd();
+			});
+			$.getScript('widgets/nos/js/nos.js', function(){
+				nos();
+			});
+			$.getScript('widgets/appstorm/js/appstorm.js', function(){
+				appstorm();
+			});
 		});
-
-		function loadGrid(id) {
-			$("#grid").html(ajax_load);
-			var url = "ajax/grid.php";
-			$.getJSON(
-				url,
-				{id: id},
-				function(json) {
-					$("#grid").html(json);
-				}
-			);
-		}
 	</script>
 </head>
 
@@ -68,6 +53,7 @@ require_once 'connect.req.php';
 		</nav>
 
 		<div id="tabs">
+			<ul>
 			<?php
 				$cursor = $tabs->find();
 				$cursor->sort(array('position' => 1));
@@ -75,6 +61,7 @@ require_once 'connect.req.php';
 				$first = true;
 				while ($cursor->hasNext())
 				{
+					echo "<li>";
 					$cursor->next();
 					$obj = $cursor->current();
 					if ($first)
@@ -90,11 +77,15 @@ require_once 'connect.req.php';
 							$cursor->key(),
 							$obj['name']);
 					}
+					echo "</li>";
 				}
 
-				echo '<a href="addTab.php" class="positive right button">Add tab</a>' . PHP_EOL;
+				echo '<li><a href="addTab.php" class="positive right button">Add tab</a></li>' . PHP_EOL;
 			?>
+			</ul>
 		</div>
+
+		<div id="grid-options"><a href="#" class="button">Toggle options</a></div>
 
 		<div id="grid"></div>
 	</section>
@@ -122,6 +113,12 @@ require_once 'connect.req.php';
 				<p class="description">Feeds of today:</p>
 
 				<div id="appstorm-list"></div>
+			</div>
+			<div class="widget pennyarcade">
+				<strong class="title">Penny Arcade</strong> <a href="#" id="pennyarcade-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
+				<p class="description">Strip of the day:</p>
+
+				<div id="pennyarcadestrip"></p>
 			</div>
 		</div>
 

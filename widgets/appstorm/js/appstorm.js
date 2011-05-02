@@ -1,5 +1,12 @@
 (function($){
 	appstorm = function() {
+		$("head").append("<link>");
+		css = $("head").children(":last");
+		css.attr({
+			rel:  "stylesheet",
+			type: "text/css",
+			href: "widgets/appstorm/css/appstorm.css"
+		});
 		_appstorm();
 		$("#appstorm-reload").click(function(){
 			_appstorm();

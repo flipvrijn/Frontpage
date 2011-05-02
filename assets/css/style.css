@@ -1,6 +1,6 @@
 body {
   margin: 20px;
-  background: url("../images/background-pattern3.png");
+  background: url("../images/background.png");
   font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
   font-size: 12px;
   color: #3C3C3D; }
@@ -49,23 +49,16 @@ section#right-side {
 
 div#tabs {
   margin: 0 0 20px 0; }
+  div#tabs li {
+    display: inline;
+    list-style-type: none;
+    padding-right: none; }
+  div#tabs ul {
+    display: inline; }
 
-table#gridTable span {
-  height: 10px;
-  padding-bottom: 2px; }
-table#gridTable a.button {
-  min-width: 70px;
-  height: 25px;
-  text-align: center; }
-table#gridTable td {
-  padding: 2px; }
-table#gridTable div.options {
-  text-align: center;
-  height: 20px; }
-  table#gridTable div.options a {
-    min-width: 10px;
-    height: 10px;
-    padding: 1px 0px 6px 2px; }
+div#grid-options {
+  margin-left: 2px;
+  float: right; }
 
 div#form label {
   display: block; }

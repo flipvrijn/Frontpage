@@ -1,5 +1,12 @@
 (function($){
 	xkcd = function() {
+		$("head").append("<link>");
+		css = $("head").children(":last");
+		css.attr({
+			rel:  "stylesheet",
+			type: "text/css",
+			href: "widgets/xkcd/css/xkcd.css"
+		});
 		_xkcd();
 		$("#xkcd-reload").click(function(){
 			_xkcd();

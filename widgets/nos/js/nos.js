@@ -1,5 +1,12 @@
 (function($){
 	nos = function() {
+		$("head").append("<link>");
+		css = $("head").children(":last");
+		css.attr({
+			rel:  "stylesheet",
+			type: "text/css",
+			href: "widgets/nos/css/nos.css"
+		});
 		_nos();
 		$("#nos-reload").click(function(){
 			_nos();

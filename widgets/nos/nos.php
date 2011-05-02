@@ -9,10 +9,10 @@ class Nu
 		$this->category = $category;
 	}
 
-	public function getNews()
+	public function getNews($y, $m, $d)
 	{
 		$newsItems = array();
-		$this->fileContent = file_get_contents("http://nos.nl/nieuws/archief/datum/" . date('Y-m-d'));
+		$this->fileContent = file_get_contents("http://nos.nl/nieuws/archief/datum/" . $y . '-' . $m . '-' . $d);
 		preg_match('/<ul class="news\-list data\-list time\-cat\-title">(.*?)<\/ul>/', $this->fileContent, $list);
 		preg_match_all('/<a href="(.*?)">/', $list[1], $links);
 		preg_match_all('/<span class="time">(.*?)<\/span>/', $list[1], $times);
@@ -31,4 +31,4 @@ class Nu
 
 $widget = new Nu();
 
-echo json_encode($widget->getNews());
+echo json_encode($widget->getNews(date('Y'), date('m'), date('d')));
