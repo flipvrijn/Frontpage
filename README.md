@@ -3,7 +3,7 @@ A minimal, yet functional frontpage in PHP
 This project is basically a hobby project. Yet placed it on GitHub to show people how you can use MongoDB, PHP and AJAX together.
 
 A preview of how it looks at the moment:
-![Frontpage preview](http://i.imgur.com/DeIc7.png);
+![Frontpage preview](http://i.imgur.com/DeIc7.png)
 
 # Features
 
