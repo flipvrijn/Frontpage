@@ -35,7 +35,7 @@ At the moment there are three collections in the Mongo database:
     -   **grid**:
         -   **width**: The width of the grid (propagated to each grid per tab, no individual width yet).
         -   **height**: The height of the grid (idem).
-    -   **newWindow*: A boolean value whether a link should open in a new window or not.
+    -   **newWindow**: A boolean value whether a link should open in a new window or not.
 3.  **tabs**: This collection contains all documents describing each tab. The structure of a document:
     -   **_id**: Auto-generated unique id of the document.
     -   **name**: The name of the tab (displayed).
