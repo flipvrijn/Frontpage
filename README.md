@@ -4,7 +4,7 @@ This project is basically a hobby project. Yet placed it on GitHub to show peopl
 
 # Preview
 
-![Frontpage preview](http://i.imgur.com/PUXFJ.png)
+http://i.imgur.com/PUXFJ.png
 
 # Features
 
