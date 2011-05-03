@@ -1,0 +1,21 @@
+.widget.quotes {
+  float: left;
+  height: 350px; }
+  .widget.quotes li {
+    list-style-type: none; }
+    .widget.quotes li:nth-child(2n+1) {
+      background: #ECECEC; }
+    .widget.quotes li .time {
+      padding-right: 5px; }
+  .widget.quotes div#quotes-list {
+    margin-top: 5px;
+    overflow-y: auto;
+    width: 320px;
+    height: 250px; }
+  .widget.quotes input[type^=text] {
+    display: inline;
+    width: 270px }
+  .widget.quotes label {
+    width: 50px;
+    float: left;
+    display: block; }
