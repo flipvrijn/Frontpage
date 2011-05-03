@@ -1,6 +1,6 @@
 .widget.nos {
   float: left;
-  height: 320px; }
+  height: 350px; }
   .widget.nos li {
     list-style-type: none; }
     .widget.nos li:nth-child(2n+1) {
@@ -12,4 +12,4 @@
     overflow-y: auto;
     white-space: nowrap;
     width: 280px;
-    height: 285px; }
+    height: 305px; }

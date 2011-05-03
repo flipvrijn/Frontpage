@@ -4,7 +4,7 @@ This project is basically a hobby project. Yet placed it on GitHub to show peopl
 
 # Preview
 
-![Frontpage preview](http://i.imgur.com/DeIc7.png)
+![Frontpage preview](http://i.imgur.com/RoZDy.png)
 
 # Features
 
@@ -20,10 +20,11 @@ This project is basically a hobby project. Yet placed it on GitHub to show peopl
 2.  **NOS (http://www.nos.nl)**: The latest news of the NOS.
 3.  **AppStorm (http://mac.appstorm.net/)**: The latest feed of Mac news on AppStorm.
 4.  **Penny Arcade (http://www.pennyarcade.com)**: The latest strip of Penny Arcade.
+5.  **Quotes**: Store quotes locally and review them later.
 
 # Database structure
 
-At the moment there are three collections in the Mongo database:
+At the moment there are **four** collections in the Mongo database:
 
 1.  **links**: This collection contains all documents describing each link in the grid. The structure of a document:
     -   **_id**: Auto-generated unique id of the document.
@@ -34,6 +35,8 @@ At the moment there are three collections in the Mongo database:
     -   **tabId**: The unique id of the tab to which the links are addressed.
 2.  **settings**: This collection contains one document for the settings of the Frontpage. The structure of a document:
     -   **_id**: Auto-generated unique id of the document.
+    -   **frontpage**:
+        -   **title**: The title displayed at the frontpage.
     -   **grid**:
         -   **width**: The width of the grid (propagated to each grid per tab, no individual width yet).
         -   **height**: The height of the grid (idem).
@@ -42,3 +45,7 @@ At the moment there are three collections in the Mongo database:
     -   **_id**: Auto-generated unique id of the document.
     -   **name**: The name of the tab (displayed).
     -   **position**: The absolute position in the list of tab documents.
+4.  **quotes**: This collection contains all documents describing each quote. The structure of a document:
+    -   **_id**: Auto-generated unique id of the document.
+    -   **text**: The text of the quote.
+    -   **author**: The author of the quote.

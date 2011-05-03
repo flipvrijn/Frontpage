@@ -1,35 +1,4 @@
-<?php
-
-require_once 'connect.req.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	$obj = $tabs->findOne(array('position' => (int) $_POST['position']));
-
-	$newObj = array(
-		'name' => $_POST['name'],
-		'position' => (int) $_POST['position']
-	);
-
-	if ($obj == NULL)
-	{
-		$tabs->save($newObj);
-	}
-	else
-	{
-		$cursor = $tabs->find(array('position' => array(':gte' => (int) $_POST['position'])));
-		while ($cursor->hasNext())
-		{
-			$cursor->next();
-			$tabs->update(array('_id' => new MongoId($cursor->key())), array(':inc' => array('position' => 1)));
-		}
-		$tabs->save($newObj);
-	}
-
-	echo 'Saved!';
-}
-
-?>
+<?php require_once 'connect.req.php'; ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -44,6 +13,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<h3>Add tab</h3>
 	</header>
 
+	<?php
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		$obj = $tabs->findOne(array('position' => (int) $_POST['position']));
+
+		$newObj = array(
+			'name' => $_POST['name'],
+			'position' => (int) $_POST['position']
+		);
+
+		if ($obj == NULL)
+		{
+			$tabs->save($newObj);
+		}
+		else
+		{
+			$cursor = $tabs->find(array('position' => array(':gte' => (int) $_POST['position'])));
+			while ($cursor->hasNext())
+			{
+				$cursor->next();
+				$tabs->update(array('_id' => new MongoId($cursor->key())), array(':inc' => array('position' => 1)));
+			}
+			$tabs->save($newObj);
+		}
+
+		echo '<p>Saved!</p>';
+	}
+	?>
+
 	<div id="form">
 		<form action="addTab.php" method="post">
 			<label for="name">Name:</label>
@@ -51,8 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 			<label for="position" class="normal">Position:</label>
 			<input type="number" name="position" min="1" required />
-
-			<input type="hidden" name="tabId" value="<?php echo $_GET['tab']; ?>" />
 
 			<input type="submit" value="Save!" />
 		</form>

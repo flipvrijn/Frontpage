@@ -1,25 +1,4 @@
-<?php
-
-require 'connect.req.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	$settings->update(array(
-		'_id' => new MongoId($settingsId)), 
-			array(
-				'grid' => 
-					array(
-						'width' => (int) $_POST['width'], 
-						'height' => (int) $_POST['height']
-					),
-				'newWindow' => (int) $_POST['newWindow']
-			)
-	);
-
-	echo 'Saved!';
-}
-
-?>
+<?php require 'connect.req.php'; ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -35,17 +14,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<h3>Settings</h3>
 	</header>
 
+	<?php
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		$settingsCollection->update(array(
+			'_id' => new MongoId($settingsId)), 
+			array(
+				'frontpage' =>
+					array(
+						'title' => $_POST['title']
+					),
+				'grid' => 
+					array(
+						'width' => (int) $_POST['width'], 
+						'height' => (int) $_POST['height'],
+					),
+				'newWindow' => (int) $_POST['newWindow'],
+			)
+		);
+
+		echo '<p>Saved!</p>';
+	} ?>
+
 	<div id="form">
 		<form action="settings.php" method="post">
 			<fieldset>
-				<legend>Grid size:</legend>
+				<legend>Frontpage:</legend>
+				<label for="title">Title:</label>
+				<input type="text" name="title" value="<?php echo $settings['frontpage']['title']; ?>" required placeholder="Title" />
+			</fieldset>
+			<fieldset>
+				<legend>Grid:</legend>
 				<label for="width" class="normal">Width:</label>
-				<input type="number" name="width" min="1" max="10" value="<?php echo $gridSettings['grid']['width']; ?>" required placeholder="Width" />
+				<input type="number" name="width" min="1" max="10" value="<?php echo $settings['grid']['width']; ?>" required placeholder="Width" />
 				<label for="height" class="normal">Height:</label>
-				<input type="number" name="height" min="1" max="10" value="<?php echo $gridSettings['grid']['height']; ?>" required placeholder="Height" />
+				<input type="number" name="height" min="1" max="10" value="<?php echo $settings['grid']['height']; ?>" required placeholder="Height" />
 				<label>Open link in new window:</label>
-				<input type="radio" name="newWindow" value="1" <?php echo ($gridSettings['newWindow'] == 1) ? 'checked="checked"' : ''; ?> /> Yes
-				<input type="radio" name="newWindow" value="0" <?php echo ($gridSettings['newWindow'] == 0) ? 'checked="checked"' : ''; ?> /> No
+				<input type="radio" name="newWindow" value="1" <?php echo ($settings['newWindow'] == 1) ? 'checked="checked"' : ''; ?> /> Yes
+				<input type="radio" name="newWindow" value="0" <?php echo ($settings['newWindow'] == 0) ? 'checked="checked"' : ''; ?> /> No
 
 				<input type="hidden" name="tabId" value="<?php echo $_GET['tab']; ?>" />
 

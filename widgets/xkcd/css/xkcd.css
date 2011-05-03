@@ -1,6 +1,5 @@
 .widget.xkcd {
   float: left;
-  height: 320px;
   width: auto; }
   .widget.xkcd img {
     max-width: 250px;

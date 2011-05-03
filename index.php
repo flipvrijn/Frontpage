@@ -31,6 +31,9 @@
 			$.getScript('widgets/appstorm/js/appstorm.js', function(){
 				appstorm();
 			});
+			$.getScript('widgets/quotes/js/quotes.js', function(){
+				quotes();
+			});
 		});
 	</script>
 </head>
@@ -38,7 +41,7 @@
 <body>
 	<section id="left-side">
 		<header>
-			<h3>Flip's Frontpage</h3>
+			<h3><?php echo $settings['frontpage']['title']; ?></h3>
 		</header>
 
 		<nav>
@@ -46,7 +49,7 @@
 				<li><a href="settings.php">Settings</a></li>
 			</ul>
 
-			<form action="http://www.google.com/search" method="get" target="<?php echo ($gridSettings['newWindow'] == 1) ? '_blank' : '_self'; ?>">
+			<form action="http://www.google.com/search" method="get" target="<?php echo ($settings['newWindow'] == 1) ? '_blank' : '_self'; ?>">
 				<input type="search" name="q" placeholder="Search terms" />
 				<input type="submit" value="Search!" />
 			</form>
@@ -96,17 +99,24 @@
 		</header>
 
 		<div id="widgets">
-			<div class="widget xkcd">
-				<strong class="title">XKCD</strong> <a href="#" id="xkcd-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
-				<p class="description">Strip of the day:</p>
-				
-				<p id="xkcdstrip"></p>				
-			</div>
 			<div class="widget nos">
 				<strong class="title">NOS</strong> <a href="#" id="nos-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
 				<p class="description">News of the day:</p>
 
 				<div id="nos-list"></div>
+			</div>
+			<div class="widget quotes">
+				<strong class="title">Quotes</strong> <a href="#" id="nos-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
+				<p class="description">Awesome quotes:</p>
+
+				<div id="quotes-list"></div>
+				<p>Add comment:</p>
+				<form action="widgets/quotes/quotes.php" method="POST">
+					<label for="text">Text:</label>
+					<input type="text" name="text" required placeholder="Text" /><br />
+					<label for="author">Author:</label>
+					<input type="text" name="author" required placeholder="Author" />
+				</form>
 			</div>
 			<div class="widget appstorm">
 				<strong class="title">AppStorm</strong> <a href="#" id="appstorm-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
@@ -114,11 +124,17 @@
 
 				<div id="appstorm-list"></div>
 			</div>
+			<div class="widget xkcd">
+				<strong class="title">XKCD</strong> <a href="#" id="xkcd-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
+				<p class="description">Strip of the day:</p>
+				
+				<p id="xkcdstrip"></p>				
+			</div>
 			<div class="widget pennyarcade">
 				<strong class="title">Penny Arcade</strong> <a href="#" id="pennyarcade-reload" class="button reload"><span class="reload icon">&nbsp;</span></a>
 				<p class="description">Strip of the day:</p>
 
-				<div id="pennyarcadestrip"></p>
+				<p id="pennyarcadestrip"></p>
 			</div>
 		</div>
 

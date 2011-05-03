@@ -7,11 +7,17 @@ try
 	$mongo = new Mongo();
 	$db = $mongo->selectDB('frontpage');
 
-	$settingsId = '4da0587bce1963eb14c23cb6';
-	$settings = $db->settings;
 	$links = $db->links;
 	$tabs = $db->tabs;
-	$gridSettings = $settings->findOne(array('_id' => new MongoId($settingsId)));
+	$settingsCollection = $db->settings;
+	$settingsCursor = $db->settings->find()->limit(1);
+	$settingsId;
+	$settings = array();
+	foreach ($settingsCursor as $obj)
+	{
+		$settingsId = $settingsCursor->key();
+		$settings = $obj;
+	}
 }
 catch (MongoConnectionException $e)
 {

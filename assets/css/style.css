@@ -39,10 +39,9 @@ section#right-side {
   margin-left: 20px;
   width: auto;
   float: left; }
-  section#right-side div#widgets {
-    margin-top: 15px; }
   section#right-side .widget {
-    margin-right: 10px; }
+    margin-right: 10px;
+    margin-top: 15px; }
   section#right-side #widgets a.button.reload {
     padding: 1px 1px 1px 3px;
     width: 12px; }
@@ -55,10 +54,6 @@ div#tabs {
     padding-right: none; }
   div#tabs ul {
     display: inline; }
-
-div#grid-options {
-  margin-left: 2px;
-  float: right; }
 
 div#form label {
   display: block; }

@@ -3,10 +3,10 @@
 require_once '../connect.req.php';
 
 $jsonResponse = '<table id="gridTable">';
-for ($i = 0; $i < $gridSettings['grid']['height']; $i++)
+for ($i = 0; $i < $settings['grid']['height']; $i++)
 {
 	$jsonResponse .= '<tr>';
-	for ($j = 0; $j < $gridSettings['grid']['width']; $j++)
+	for ($j = 0; $j < $settings['grid']['width']; $j++)
 	{
 		$jsonResponse .= '<td><div>';
 		
@@ -19,16 +19,16 @@ for ($i = 0; $i < $gridSettings['grid']['height']; $i++)
 		{
 			$jsonResponse .= sprintf('<a href="%s" class="button" %s>%s</a>', 
 				$linkObj['url'], 
-				($gridSettings['newWindow'] == 1) ? 'target="_blank"' : '',
+				($settings['newWindow'] == 1) ? 'target="_blank"' : '',
 				$linkObj['name']);
 			$jsonResponse .= '</div><div class="options">';
-			$jsonResponse .= sprintf('<a href="add.php?name=%s&url%s&x=%s&y=%s&tab=%s" class="button" title="Edit"><span class="pen icon">&nbsp;</span></a>', $linkObj['name'], $linkObj['url'], $j, $i, $tabId);
-			$jsonResponse .= sprintf('<a href="remove.php?x=%s&y=%s&tab=%s" class="button negative" title="Remove"><span class="cross icon">&nbsp;</span></a>', $j, $i, $tabId);
+			$jsonResponse .= sprintf('<a href="addLink.php?name=%s&url=%s&x=%s&y=%s&tab=%s" class="button" title="Edit"><span class="pen icon">&nbsp;</span></a>', $linkObj['name'], urlencode($linkObj['url']), $j, $i, $tabId);
+			$jsonResponse .= sprintf('<a href="removeLink.php?x=%s&y=%s&tab=%s" class="button negative" title="Remove"><span class="cross icon">&nbsp;</span></a>', $j, $i, $tabId);
 			$jsonResponse .= '</div>';
 		}
 		else
 		{
-			$jsonResponse .= sprintf('<a href="add.php?x=%s&y=%s&tab=%s" class="button positive">&nbsp;</a>', $j, $i,	$tabId);
+			$jsonResponse .= sprintf('<a href="addLink.php?x=%s&y=%s&tab=%s" class="button positive">&nbsp;</a>', $j, $i,	$tabId);
 			$jsonResponse .= '</div><div class="options"></div>';
 		}
 		$jsonResponse .= '</td>';

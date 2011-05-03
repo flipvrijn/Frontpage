@@ -1,13 +1,8 @@
 <?php
 
-class Nu
+class Nos
 {
-	private $fileContent, $category;
-
-	public function setCategory($category)
-	{
-		$this->category = $category;
-	}
+	private $fileContent;
 
 	public function getNews($y, $m, $d)
 	{
@@ -29,6 +24,6 @@ class Nu
 	}
 }
 
-$widget = new Nu();
+$widget = new Nos();
 
 echo json_encode($widget->getNews(date('Y'), date('m'), date('d')));
